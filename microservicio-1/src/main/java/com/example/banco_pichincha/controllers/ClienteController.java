@@ -1,5 +1,6 @@
 package com.example.banco_pichincha.controllers;
 
+import com.example.banco_pichincha.dtos.ClientePersonaDTO;
 import com.example.banco_pichincha.entities.Cliente;
 import com.example.banco_pichincha.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +28,15 @@ public class ClienteController {
     }
 
     @PostMapping
-    public Cliente save(@RequestBody Cliente cliente) {
-        return clienteService.save(cliente);
+    public Cliente save(@RequestBody ClientePersonaDTO clientePersonaDTO) {
+        return clienteService.save(clientePersonaDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> update(@PathVariable Long id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> update(@PathVariable Long id, @RequestBody ClientePersonaDTO cliente) {
         return clienteService.findById(id)
                 .map(existingCliente -> {
-                    cliente.setId(existingCliente.getId());
+                    cliente.setCliente_id(existingCliente.getCliente_id());
                     return ResponseEntity.ok(clienteService.save(cliente));
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
