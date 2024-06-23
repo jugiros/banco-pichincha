@@ -1,6 +1,5 @@
 package com.example.banco_pichincha.entities;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,14 +10,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Persona {
+public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    private String genero;
-    private int edad;
-    private String identificacion;
-    private String direccion;
-    private String telefono;
+    private String numeroCuenta;
+    private String tipoCuenta;
+    private double saldoInicial;
+    private boolean estado;
 }
