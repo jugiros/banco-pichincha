@@ -14,8 +14,9 @@ public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String numeroCuenta;
-    private String tipoCuenta;
-    private double saldoInicial;
+    private String numero_cuenta;
+    private String tipo_cuenta;
+    private double saldo_inicial;
     private boolean estado;
+    private Long cliente_id;
 }

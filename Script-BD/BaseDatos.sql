@@ -13,32 +13,29 @@ CREATE TABLE IF NOT EXISTS persona (
     );
 
 CREATE TABLE IF NOT EXISTS cliente (
-                                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                       nombre VARCHAR(255),
-    genero VARCHAR(10),
-    edad INT,
-    identificacion VARCHAR(20),
-    direccion VARCHAR(255),
-    telefono VARCHAR(20),
-    clienteId VARCHAR(20) UNIQUE,
+                                       cliente_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                       persona_id BIGINT,
     contraseña VARCHAR(255),
-    estado BOOLEAN
+    estado BOOLEAN,
+    FOREIGN KEY (persona_id) REFERENCES persona(id)
     );
 
 CREATE TABLE IF NOT EXISTS cuenta (
                                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                      numeroCuenta VARCHAR(20) UNIQUE,
-    tipoCuenta VARCHAR(20),
-    saldoInicial DOUBLE,
-    estado BOOLEAN
+                                      cliente_id BIGINT,
+                                      numero_cuenta VARCHAR(20) UNIQUE,
+    tipo_cuenta VARCHAR(20),
+    saldo_inicial DOUBLE,
+    estado BOOLEAN,
+    FOREIGN KEY (cliente_id) REFERENCES cliente(cliente_id)
     );
 
 CREATE TABLE IF NOT EXISTS movimiento (
                                           id BIGINT AUTO_INCREMENT PRIMARY KEY,
                                           fecha DATETIME,
-                                          tipoMovimiento VARCHAR(20),
+                                          tipo_movimiento VARCHAR(20),
     valor DOUBLE,
     saldo DOUBLE,
-    cuentaId BIGINT,
-    FOREIGN KEY (cuentaId) REFERENCES cuenta(id)
+    cuenta_id BIGINT,
+    FOREIGN KEY (cuenta_id) REFERENCES cuenta(id)
     );

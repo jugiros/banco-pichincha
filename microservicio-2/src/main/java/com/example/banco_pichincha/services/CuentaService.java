@@ -1,9 +1,12 @@
 package com.example.banco_pichincha.services;
 
 import com.example.banco_pichincha.entities.Cuenta;
+import com.example.banco_pichincha.errors.ErrorMessages;
+import com.example.banco_pichincha.exception.InvalidCuentaException;
 import com.example.banco_pichincha.repositories.CuentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +25,9 @@ public class CuentaService {
     }
 
     public Cuenta save(Cuenta cuenta) {
+        if (ObjectUtils.isEmpty(cuenta.getCliente_id())) {
+            throw new InvalidCuentaException(ErrorMessages.CLIENTE_ID_NULL);
+        }
         return cuentaRepository.save(cuenta);
     }
 

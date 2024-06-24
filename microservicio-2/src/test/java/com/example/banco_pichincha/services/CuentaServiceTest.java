@@ -28,9 +28,9 @@ public class CuentaServiceTest {
     @Test
     public void testSaveCuenta() {
         Cuenta cuenta = new Cuenta();
-        cuenta.setNumeroCuenta("1234567890");
-        cuenta.setTipoCuenta("Ahorros");
-        cuenta.setSaldoInicial(1000.0);
+        cuenta.setNumero_cuenta("1234567890");
+        cuenta.setTipo_cuenta("Ahorros");
+        cuenta.setSaldo_inicial(1000.0);
         cuenta.setEstado(true);
 
         when(cuentaRepository.save(any(Cuenta.class))).thenReturn(cuenta);
@@ -38,9 +38,9 @@ public class CuentaServiceTest {
         Cuenta savedCuenta = cuentaService.save(cuenta);
 
         assertNotNull(savedCuenta);
-        assertEquals("1234567890", savedCuenta.getNumeroCuenta());
-        assertEquals("Ahorros", savedCuenta.getTipoCuenta());
-        assertEquals(1000.0, savedCuenta.getSaldoInicial());
+        assertEquals("1234567890", savedCuenta.getNumero_cuenta());
+        assertEquals("Ahorros", savedCuenta.getTipo_cuenta());
+        assertEquals(1000.0, savedCuenta.getSaldo_inicial());
         assertTrue(savedCuenta.isEstado());
 
         verify(cuentaRepository, times(1)).save(any(Cuenta.class));
